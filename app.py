@@ -259,38 +259,103 @@ def course():
         </tr>
         """
 
-    return f"""
-    <h1>Course Management</h1>
+  return f"""
+<html>
+<head>
+<style>
 
-    <form method="POST">
+body {{
+    font-family: Arial;
+    background-color: #f4f8fb;
+    padding: 30px;
+}}
 
-    Course Name:
-    <input name="course_name"><br><br>
+h1 {{
+    color: #154c79;
+}}
 
-    Department:
-    <input name="department"><br><br>
+form {{
+    background: white;
+    padding: 20px;
+    width: 350px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px gray;
+}}
 
-    <button>Add Course</button>
+input {{
+    width: 90%;
+    padding: 8px;
+    margin: 5px;
+}}
 
-    </form>
+button {{
+    background: #2874a6;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+}}
 
-    <h2>Course Records</h2>
+table {{
+    width: 70%;
+    background: white;
+    border-collapse: collapse;
+    margin-top: 20px;
+}}
 
-    <table border="1">
+th {{
+    background: #2874a6;
+    color: white;
+}}
 
-    <tr>
-    <th>ID</th>
-    <th>Course Name</th>
-    <th>Department</th>
-    </tr>
+td, th {{
+    padding: 10px;
+    border: 1px solid #ccc;
+}}
 
-    {rows}
+a {{
+    color: #154c79;
+}}
 
-    </table>
+</style>
+</head>
 
-    <br>
-    <a href="/">Home</a>
-    """
+<body>
+
+<h1>Course Management</h1>
+
+<form method="POST">
+
+Course Name:
+<input name="course_name"><br><br>
+
+Department:
+<input name="department"><br><br>
+
+<button>Add Course</button>
+
+</form>
+
+<h2>Course Records</h2>
+
+<table>
+
+<tr>
+<th>ID</th>
+<th>Course Name</th>
+<th>Department</th>
+</tr>
+
+{rows}
+
+</table>
+
+<br>
+<a href="/">Home</a>
+
+</body>
+</html>
+"""
 
 @app.route("/enrollment", methods=["GET", "POST"])
 def enrollment():
