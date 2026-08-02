@@ -116,7 +116,69 @@ def student():
         """
 
     return f"""
-    <h1>Student Management</h1>
+<html>
+<head>
+<style>
+
+body {{
+    font-family: Arial;
+    background-color: #f4f8fb;
+    padding: 30px;
+}}
+
+h1 {{
+    color: #154c79;
+}}
+
+form {{
+    background: white;
+    padding: 20px;
+    width: 350px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px gray;
+}}
+
+input {{
+    width: 90%;
+    padding: 8px;
+    margin: 5px;
+}}
+
+button {{
+    background: #2874a6;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+}}
+
+table {{
+    width: 90%;
+    background: white;
+    border-collapse: collapse;
+    margin-top: 20px;
+}}
+
+th {{
+    background: #2874a6;
+    color: white;
+}}
+
+td, th {{
+    padding: 10px;
+    border: 1px solid #ccc;
+}}
+
+a {{
+    color: #154c79;
+}}
+
+</style>
+</head>
+
+<body>
+
+<h1>Student Management</h1>
 
     <form method="POST">
 
