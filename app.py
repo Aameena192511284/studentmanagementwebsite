@@ -10,15 +10,65 @@ def get_db():
     conn.row_factory = sqlite3.Row
     return conn
 
-
 @app.route("/")
 def home():
     return """
+    <html>
+    <head>
+    <style>
+    body {
+        font-family: Arial;
+        background-color: #eaf2ff;
+        text-align: center;
+        padding-top: 50px;
+    }
+
+    .box {
+        background: white;
+        width: 400px;
+        margin: auto;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0px 0px 15px gray;
+    }
+
+    h1 {
+        color: #154c79;
+    }
+
+    a {
+        display: block;
+        background-color: #2874a6;
+        color: white;
+        padding: 12px;
+        margin: 15px;
+        border-radius: 8px;
+        text-decoration: none;
+    }
+
+    a:hover {
+        background-color: #1b4f72;
+    }
+
+    </style>
+    </head>
+
+    <body>
+
+    <div class="box">
+
     <h1>Student Management System</h1>
 
-    <a href="/student">Student Management</a><br><br>
-    <a href="/course">Course Management</a><br><br>
+    <a href="/student">Student Management</a>
+
+    <a href="/course">Course Management</a>
+
     <a href="/enrollment">Enrollment Management</a>
+
+    </div>
+
+    </body>
+    </html>
     """
 
 
