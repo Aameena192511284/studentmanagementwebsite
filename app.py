@@ -259,7 +259,7 @@ def course():
         </tr>
         """
 
-  return f"""
+    return f"""
 <html>
 <head>
 <style>
@@ -396,37 +396,102 @@ def enrollment():
         """
 
     return f"""
-    <h1>Enrollment Management</h1>
+<html>
+<head>
+<style>
 
-    <form method="POST">
+body {{
+    font-family: Arial;
+    background-color: #f4f8fb;
+    padding: 30px;
+}}
 
-    Student ID:
-    <input name="student_id"><br><br>
+h1 {{
+    color: #154c79;
+}}
 
-    Course ID:
-    <input name="course_id"><br><br>
+form {{
+    background: white;
+    padding: 20px;
+    width: 350px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px gray;
+}}
 
-    <button>Enroll Student</button>
+input {{
+    width: 90%;
+    padding: 8px;
+    margin: 5px;
+}}
 
-    </form>
+button {{
+    background: #2874a6;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+}}
 
-    <h2>Enrollment Records</h2>
+table {{
+    width: 70%;
+    background: white;
+    border-collapse: collapse;
+    margin-top: 20px;
+}}
 
-    <table border="1">
+th {{
+    background: #2874a6;
+    color: white;
+}}
 
-    <tr>
-    <th>Enrollment ID</th>
-    <th>Student ID</th>
-    <th>Course ID</th>
-    </tr>
+td, th {{
+    padding: 10px;
+    border: 1px solid #ccc;
+}}
 
-    {rows}
+a {{
+    color: #154c79;
+}}
 
-    </table>
+</style>
+</head>
 
-    <br>
-    <a href="/">Home</a>
-    """
+<body>
+
+<h1>Enrollment Management</h1>
+
+<form method="POST">
+
+Student ID:
+<input name="student_id"><br><br>
+
+Course ID:
+<input name="course_id"><br><br>
+
+<button>Enroll Student</button>
+
+</form>
+
+<h2>Enrollment Records</h2>
+
+<table>
+
+<tr>
+<th>Enrollment ID</th>
+<th>Student ID</th>
+<th>Course ID</th>
+</tr>
+
+{rows}
+
+</table>
+
+<br>
+<a href="/">Home</a>
+
+</body>
+</html>
+"""
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=False)
