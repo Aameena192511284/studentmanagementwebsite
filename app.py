@@ -3,7 +3,7 @@ import sqlite3
 
 app = Flask(__name__)
 
-DATABASE = "studentmanagement.db"
+DATABASE = r"C:\Users\sindh\OneDrive\Desktop\studentmanagementwebsite\studentmanagement.db"
 
 def get_db():
     conn = sqlite3.connect(DATABASE)
