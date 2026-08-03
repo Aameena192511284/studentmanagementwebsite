@@ -10,6 +10,7 @@ def get_db():
     conn.row_factory = sqlite3.Row
     return conn
 
+
 @app.route("/")
 def home():
     return """
@@ -112,6 +113,9 @@ def student():
         <td>{s['gender']}</td>
         <td>{s['phone']}</td>
         <td>{s['email']}</td>
+        <td>
+        <a href="/delete_student/{s['student_id']}">Delete</a>
+        </td>
         </tr>
         """
 
@@ -180,45 +184,66 @@ a {{
 
 <h1>Student Management</h1>
 
-    <form method="POST">
+<form method="POST">
 
-    Name:
-    <input name="name"><br><br>
+Name:
+<input name="name"><br><br>
 
-    Age:
-    <input name="age"><br><br>
+Age:
+<input name="age"><br><br>
 
-    Gender:
-    <input name="gender"><br><br>
+Gender:
+<input name="gender"><br><br>
 
-    Phone:
-    <input name="phone"><br><br>
+Phone:
+<input name="phone"><br><br>
 
-    Email:
-    <input name="email"><br><br>
+Email:
+<input name="email"><br><br>
 
-    <button>Add Student</button>
+<button>Add Student</button>
 
-    </form>
+</form>
 
-    <h2>Student Records</h2>
+<h2>Student Records</h2>
 
-    <table border="1">
-    <tr>
-    <th>Name</th>
-    <th>Age</th>
-    <th>Gender</th>
-    <th>Phone</th>
-    <th>Email</th>
-    </tr>
+<table border="1">
 
-    {rows}
+<tr>
+<th>Name</th>
+<th>Age</th>
+<th>Gender</th>
+<th>Phone</th>
+<th>Email</th>
+<th>Action</th>
+</tr>
 
-    </table>
+{rows}
 
-    <br>
-    <a href="/">Home</a>
-    """
+</table>
+
+<br>
+<a href="/">Home</a>
+
+</body>
+</html>
+"""
+
+
+@app.route("/delete_student/<int:student_id>")
+def delete_student(student_id):
+
+    conn = get_db()
+
+    conn.execute(
+        "DELETE FROM student WHERE student_id = ?",
+        (student_id,)
+    )
+
+    conn.commit()
+    conn.close()
+
+    return redirect("/student")
 
 
 @app.route("/course", methods=["GET", "POST"])
@@ -256,6 +281,9 @@ def course():
         <td>{c['course_id']}</td>
         <td>{c['course_name']}</td>
         <td>{c['department']}</td>
+        <td>
+        <a href="/delete_course/{c['course_id']}">Delete</a>
+        </td>
         </tr>
         """
 
@@ -344,6 +372,7 @@ Department:
 <th>ID</th>
 <th>Course Name</th>
 <th>Department</th>
+<th>Action</th>
 </tr>
 
 {rows}
@@ -356,6 +385,23 @@ Department:
 </body>
 </html>
 """
+
+
+@app.route("/delete_course/<int:course_id>")
+def delete_course(course_id):
+
+    conn = get_db()
+
+    conn.execute(
+        "DELETE FROM course WHERE course_id = ?",
+        (course_id,)
+    )
+
+    conn.commit()
+    conn.close()
+
+    return redirect("/course")
+
 
 @app.route("/enrollment", methods=["GET", "POST"])
 def enrollment():
@@ -392,6 +438,9 @@ def enrollment():
         <td>{e['enrollement_id']}</td>
         <td>{e['student_id']}</td>
         <td>{e['course_id']}</td>
+        <td>
+        <a href="/delete_enrollment/{e['enrollement_id']}">Delete</a>
+        </td>
         </tr>
         """
 
@@ -480,6 +529,7 @@ Course ID:
 <th>Enrollment ID</th>
 <th>Student ID</th>
 <th>Course ID</th>
+<th>Action</th>
 </tr>
 
 {rows}
@@ -492,6 +542,23 @@ Course ID:
 </body>
 </html>
 """
+
+
+@app.route("/delete_enrollment/<int:enrollment_id>")
+def delete_enrollment(enrollment_id):
+
+    conn = get_db()
+
+    conn.execute(
+        "DELETE FROM enrollement WHERE enrollement_id = ?",
+        (enrollment_id,)
+    )
+
+    conn.commit()
+    conn.close()
+
+    return redirect("/enrollment")
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=False)
